@@ -7,6 +7,8 @@ clean:
 
 target/person_with_hint.yaml: clean data/kitchen_sink.yaml
 	yq '.classes.Person.annotations.display_hint = "display_me"' data/kitchen_sink.yaml
+	ls > ls.txt
+	yq data/kitchen_sink.yaml > yq.yaml
 	#yq '.classes.Person.annotations.display_hint = "display_me"' $(word 2, $^) > $@
 	## Error: write /dev/stdout: permission denied
 
