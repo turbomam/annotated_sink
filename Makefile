@@ -1,6 +1,6 @@
-.PHONY: all clean
+.PHONY: all clean annogrep
 
-all: clean
+all: clean annogrep
 
 clean:
 	rm -rf target/*yaml
@@ -16,3 +16,7 @@ target/person_with_hint.yaml: clean data/kitchen_sink.yaml
 target/pwh_gen.yaml: target/person_with_hint.yaml
 	poetry run gen-yaml $< > $@
 	poetry run gen-project $< -d generated
+
+annogrep: target/pwh_gen.yaml
+	grep -R annotations generated
+	grep -R annotations generated/jsonschema/person_with_hint.schema.json
